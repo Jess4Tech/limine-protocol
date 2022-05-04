@@ -1,7 +1,9 @@
 [package]
 authors = ["Jess B"]
+description = "A crate designed to make dealing with the Limine Protocol as easy as I feel like it needs to be:tm:"
 edition = "2021"
 keywords = ["limine", "limine-rs"]
+license = "MIT"
 name = "limine-protocol"
 version = "0.1.0"
 
