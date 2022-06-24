@@ -3,21 +3,18 @@
 #![feature(core_c_str)]
 #![deny(missing_docs)]
 
-use core::{
-    cell::UnsafeCell,
-    fmt::Debug,
-    ops::{Deref, DerefMut},
-};
+use core::{cell::UnsafeCell, fmt::Debug, ops::Deref};
 
 /// Indicates a limine request
 pub trait LimineRequestMarker {}
 
-/// Makes a `LimineRequest` Sync, for use in statics
 #[repr(transparent)]
-#[derive(Debug)]
-pub struct LimineRequest<T: LimineRequestMarker + Debug>(pub UnsafeCell<T>);
+/// A Request type, which wraps the internal request in an unsafe cell,
+/// due to the possibility it may be mutated by things outside rust.
+/// However, it automatically derefences to the internal type for ergonomics.
+pub struct Request<T>(pub UnsafeCell<T>);
 
-impl<T: LimineRequestMarker + Debug> Deref for LimineRequest<T> {
+impl<T> Deref for Request<T> {
     type Target = T;
 
     fn deref(&self) -> &Self::Target {
@@ -25,19 +22,22 @@ impl<T: LimineRequestMarker + Debug> Deref for LimineRequest<T> {
     }
 }
 
-impl<T: LimineRequestMarker + Debug> DerefMut for LimineRequest<T> {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        self.0.get_mut()
+impl<T: Debug> Debug for Request<T> {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+        <T as Debug>::fmt(unsafe { &*self.0.get() }, f)
     }
 }
 
-unsafe impl<T: LimineRequestMarker + Debug> Sync for LimineRequest<T> {}
+unsafe impl<T> Sync for Request<T> {}
 
 /// Responses
 pub mod responses;
 
 /// Requests
 pub mod requests;
+
+mod default_const;
+pub use default_const::ConstDefault;
 
 /// Structures returned by the responses
 pub mod structures;

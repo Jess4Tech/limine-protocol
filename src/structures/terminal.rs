@@ -7,7 +7,7 @@ use super::framebuffer::Framebuffer;
 /// * `TerminalSize` - `-1`
 ///     * This will **write** a single u64 to the pointer
 /// * `TerminalSave` - `-2`
-///     * This will save the terminal context to the pointer,5 of allocation size `TerminalSize`
+///     * This will save the terminal context to the pointer, of allocation size `TerminalSize`
 /// * `TerminalRestore` - `-3`
 ///     * This will restore the terminal context from the pointer, of allocation size `TerminalSize`
 /// * `TerminalFullRefresh` - `-4`

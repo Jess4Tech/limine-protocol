@@ -1,0 +1,19 @@
+# limine-protocol
+This is a binding crate for the be-a-utiful [Limine Protocol Version 3](https://github.com/limine-bootloader/limine/blob/trunk/PROTOCOL.md)
+It is intended to be ergonomic to the point expected by OS Devs, but hopefully it will help others get into the hobby. (I swear the pain is worth it, it's great)
+Tests are intended to ensure that there is no UB in the implementations themselves, and that it is, indeed, the fault of the bootloader. (Bring it on, Limine devs!)
+
+# Example
+See the `example` directory for a simple example
+
+# Changelog
+* 0.2.0
+    * Add const default for all requests
+    * Rename `LimineRequest` to `Request` and `into_request` into plain ol' `into`
+    * Added a new macro for making new requests
+    * Add a README.md
+    * Renamed Info{Request, Response} to BootloaderInfo{Request, Response}
+    * Updated Terminal docs 
+    * Added an example
+* 0.1.0
+    * Add everything : ^)
