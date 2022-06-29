@@ -7,6 +7,10 @@ Tests are intended to ensure that there is no UB in the implementations themselv
 See the `example` directory for a simple example
 
 # Changelog
+* 0.3.0
+    * Re-export requests and responses. That's right, you won't have to type `request::SomeRequest` anymore!
+* 0.2.1
+    * Fix a type
 * 0.2.0
     * Add const default for all requests
     * Rename `LimineRequest` to `Request` and `into_request` into plain ol' `into`

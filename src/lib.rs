@@ -31,10 +31,12 @@ impl<T: Debug> Debug for Request<T> {
 unsafe impl<T> Sync for Request<T> {}
 
 /// Responses
-pub mod responses;
+mod responses;
+pub use responses::*;
 
 /// Requests
-pub mod requests;
+mod requests;
+pub use requests::*;
 
 mod default_const;
 pub use default_const::ConstDefault;
