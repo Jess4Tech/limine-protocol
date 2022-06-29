@@ -5,9 +5,6 @@
 
 use core::{cell::UnsafeCell, fmt::Debug, ops::Deref};
 
-/// Indicates a limine request
-pub trait LimineRequestMarker {}
-
 #[repr(transparent)]
 /// A Request type, which wraps the internal request in an unsafe cell,
 /// due to the possibility it may be mutated by things outside rust.

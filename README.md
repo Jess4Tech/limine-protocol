@@ -7,6 +7,8 @@ Tests are intended to ensure that there is no UB in the implementations themselv
 See the `example` directory for a simple example
 
 # Changelog
+* 0.3.1
+    * I left something old in, whoops. Gone now!
 * 0.3.0
     * Re-export requests and responses. That's right, you won't have to type `request::SomeRequest` anymore!
 * 0.2.1
