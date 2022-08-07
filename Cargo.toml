@@ -6,7 +6,7 @@ keywords = ["limine", "limine-rs"]
 license = "MIT"
 name = "limine-protocol"
 repository = "https://github.com/Jess4Tech/limine-protocol"
-version = "0.3.1"
+version = "0.3.2"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

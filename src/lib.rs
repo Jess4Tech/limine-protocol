@@ -1,6 +1,5 @@
 //! Crate containing Rust representations for the Limine Boot Protocol
 #![no_std]
-#![feature(core_c_str)]
 #![deny(missing_docs)]
 
 use core::{cell::UnsafeCell, fmt::Debug, ops::Deref};

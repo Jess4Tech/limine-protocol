@@ -7,6 +7,9 @@ Tests are intended to ensure that there is no UB in the implementations themselv
 See the `example` directory for a simple example
 
 # Changelog
+* 0.3.2
+    * Removed the feature `core_c_str`, as it has been stabilized as of 1.64.0
+    * Changed offset field of struct `HHDMResponse` to `*mut ()` from `u64`
 * 0.3.1
     * I left something old in, whoops. Gone now!
 * 0.3.0
