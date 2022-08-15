@@ -1,6 +1,12 @@
 //! Crate containing Rust representations for the Limine Boot Protocol
 #![no_std]
 #![deny(missing_docs)]
+#![warn(
+    clippy::pedantic,
+    clippy::nursery,
+    clippy::unwrap_used,
+    clippy::expect_used
+)]
 
 use core::{cell::UnsafeCell, fmt::Debug, ops::Deref};
 
