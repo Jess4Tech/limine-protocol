@@ -8,7 +8,15 @@ use core::{cell::UnsafeCell, fmt::Debug, ops::Deref};
 /// A Request type, which wraps the internal request in an unsafe cell,
 /// due to the possibility it may be mutated by things outside rust.
 /// However, it automatically derefences to the internal type for ergonomics.
-pub struct Request<T>(pub UnsafeCell<T>);
+pub struct Request<T>(UnsafeCell<T>);
+
+impl<T> Request<T> {
+    /// Create a new request.
+    /// This should not be used outside of the `limine-protocol` crate.
+    pub const fn new(req: T) -> Self {
+        Self(UnsafeCell::new(req))
+    }
+}
 
 impl<T> Deref for Request<T> {
     type Target = T;

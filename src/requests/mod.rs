@@ -1,9 +1,20 @@
-const COMMON_MAGIC: [u64; 2] = [0xc7b1dd30df4c8b88, 0x0a82e883a194f07b];
+/// Common Magic for Limine requests
+pub const COMMON_MAGIC: [u64; 2] = [0xc7b1dd30df4c8b88, 0x0a82e883a194f07b];
 
 /// This creates a limine request with const defaults by black magic.
 /// It also automatically creates the `id` and `revision` fields.
 /// # Example
 /// ```rust
+/// use limine_protocol::limine_request;
+/// use core::ptr::NonNull;
+///
+/// pub struct TestResponse {
+///     /// The response revision number
+///     pub revision: u64,
+///     /// A test number from the bootloader (not actually)
+///     pub number: u64,
+/// }
+///
 /// limine_request! {
 ///     /// A test limine request, being public isn't required    
 ///     pub struct TestRequest: [0xdead, 0xbeef] {
@@ -14,6 +25,14 @@ const COMMON_MAGIC: [u64; 2] = [0xc7b1dd30df4c8b88, 0x0a82e883a194f07b];
 /// ```
 /// Will be expanded to
 /// ```rust
+/// use core::ptr::NonNull;
+/// pub struct TestResponse {
+///     /// The response revision number
+///     pub revision: u64,
+///     /// A test number from the bootloader (not actually)
+///     pub number: u64,
+/// }
+///
 /// pub struct TestRequest {
 ///     /// The request id array
 ///     pub id: [u64; 4],
@@ -26,11 +45,11 @@ const COMMON_MAGIC: [u64; 2] = [0xc7b1dd30df4c8b88, 0x0a82e883a194f07b];
 /// impl TestRequest {
 ///     /// Create a new instance of this request
 ///     pub const fn new() -> Self {
-///         use crate::ConstDefault;
+///         use limine_protocol::ConstDefault;
 ///         Self {
 ///             id: [
-///                 crate::requests::COMMON_MAGIC[0],
-///                 crate::requests::COMMON_MAGIC[1],
+///                 limine_protocol::COMMON_MAGIC[0],
+///                 limine_protocol::COMMON_MAGIC[1],
 ///                 0xdead,
 ///                 0xbeef,
 ///             ],
@@ -40,6 +59,7 @@ const COMMON_MAGIC: [u64; 2] = [0xc7b1dd30df4c8b88, 0x0a82e883a194f07b];
 ///     }
 /// }
 /// ```
+#[macro_export]
 macro_rules! limine_request {
     (
         $(#[$outer_meta:meta])*
@@ -68,8 +88,8 @@ macro_rules! limine_request {
                 use $crate::ConstDefault;
                 Self {
                     id: [
-                        $crate::requests::COMMON_MAGIC[0],
-                        $crate::requests::COMMON_MAGIC[1],
+                        $crate::COMMON_MAGIC[0],
+                        $crate::COMMON_MAGIC[1],
                         $val1,
                         $val2
                     ],
@@ -87,7 +107,7 @@ macro_rules! limine_request {
 
             /// Wrap the item in [Request]
             pub const fn into(self) -> $crate::Request<Self> {
-                $crate::Request(::core::cell::UnsafeCell::new(self))
+                $crate::Request::new(self)
             }
         }
     };
