@@ -1,6 +1,6 @@
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [HHDMRequest]
+/// Response to [`HHDMRequest`]
 pub struct HHDMResponse {
     /// The response revision number
     pub revision: u64,

@@ -10,7 +10,7 @@ pub use framebuffer::*;
 pub mod memory_map_entry;
 pub use memory_map_entry::*;
 
-/// SMPInfo structure
+/// `SMPInfo` structure
 pub mod smpinfo;
 pub use smpinfo::*;
 

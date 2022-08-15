@@ -1,6 +1,6 @@
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [RSDPRequest]
+/// Response to [`RSDPRequest`]
 pub struct RSDPResponse {
     /// The response revision number
     pub revision: u64,

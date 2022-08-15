@@ -1,6 +1,6 @@
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [SMBIOSRequest]
+/// Response to [`SMBIOSRequest`]
 pub struct SMBIOSResponse {
     /// The response revision number
     pub revision: u64,

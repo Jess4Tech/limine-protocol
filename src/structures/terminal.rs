@@ -15,7 +15,7 @@ use super::framebuffer::Framebuffer;
 pub type TerminalWriteFn = extern "C" fn(*mut Terminal, *const u8, u64);
 
 /// Type for terminal callback
-/// The first argument is `Type`, which corresponds to `CallbackType`[CallbackType]
+/// The first argument is `Type`, which corresponds to `CallbackType`[`CallbackType`]
 /// * `DecSequence`
 ///     * `ValueCount` - Number of values in the array `Values`
 ///     * `Values` - Array of values in the DEC Sequence

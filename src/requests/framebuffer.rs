@@ -6,7 +6,7 @@ limine_request! {
     #[repr(C)]
     #[derive(Debug)]
     /// Request a framebuffer
-    pub struct FramebufferRequest: [0xcbfe81d7dd2d1977, 0x063150319ebc9b71] {
+    pub struct FramebufferRequest: [0xcbfe_81d7_dd2d_1977, 0x0631_5031_9ebc_9b71] {
         /// Response pointer
         pub response: Option<NonNull<FramebufferResponse>>,
     }
@@ -19,6 +19,7 @@ impl FramebufferRequest {
     /// The backing memory must not have been invalidated by the kernel,
     /// either by writing to the physical memory, changing where it's mapped, or
     /// unmapping it.
+    #[must_use]
     pub unsafe fn get_response(&self) -> Option<&FramebufferResponse> {
         Some(self.response?.as_ref())
     }

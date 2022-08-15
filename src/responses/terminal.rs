@@ -2,7 +2,7 @@ use crate::structures::terminal::{Terminal, TerminalWriteFn};
 
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [TerminalRequest]
+/// Response to [`TerminalRequest`]
 pub struct TerminalResponse {
     /// The response revision number
     pub revision: u64,
@@ -22,13 +22,14 @@ impl TerminalResponse {
     ///
     /// # Safety
     /// The pointer must point to a valid array of [Terminal]s
+    #[must_use]
     pub unsafe fn get_terminals(&self) -> Option<&[&Terminal]> {
         if self.terminals.is_null() {
             return None;
         }
         Some(core::slice::from_raw_parts(
-            self.terminals as *const &Terminal,
-            self.terminal_count as usize,
+            self.terminals.cast::<&Terminal>(),
+            self.terminal_count.try_into().ok()?,
         ))
     }
 
@@ -38,13 +39,14 @@ impl TerminalResponse {
     /// The pointer must point to a valid array of [Terminal]s.
     /// Additionally, you must ensure that this is called *nowhere* else, otherwise
     /// very, very bad things may occur due to read and write tearing
+    #[must_use]
     pub unsafe fn get_terminals_mut(&self) -> Option<&mut [&mut Terminal]> {
         if self.terminals.is_null() {
             return None;
         }
         Some(core::slice::from_raw_parts_mut(
             self.terminals as *mut &mut Terminal,
-            self.terminal_count as usize,
+            self.terminal_count.try_into().ok()?,
         ))
     }
 }

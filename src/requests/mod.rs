@@ -1,5 +1,5 @@
 /// Common Magic for Limine requests
-pub const COMMON_MAGIC: [u64; 2] = [0xc7b1dd30df4c8b88, 0x0a82e883a194f07b];
+pub const COMMON_MAGIC: [u64; 2] = [0xc7b1_dd30_df4c_8b88, 0x0a82_e883_a194_f07b];
 
 /// This creates a limine request with const defaults by black magic.
 /// It also automatically creates the `id` and `revision` fields.
@@ -84,6 +84,7 @@ macro_rules! limine_request {
 
         impl $req {
             /// Create a new instance of this request
+            #[must_use]
             pub const fn new() -> Self {
                 use $crate::ConstDefault;
                 Self {
@@ -101,11 +102,13 @@ macro_rules! limine_request {
             }
 
             /// Alias to `Self::new`
+            #[must_use]
             pub const fn default() -> Self {
                 Self::new()
             }
 
             /// Wrap the item in [Request]
+            #[must_use]
             pub const fn into(self) -> $crate::Request<Self> {
                 $crate::Request::new(self)
             }

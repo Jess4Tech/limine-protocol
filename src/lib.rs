@@ -7,6 +7,7 @@
     clippy::unwrap_used,
     clippy::expect_used
 )]
+#![allow(clippy::module_name_repetitions)]
 
 use core::{cell::UnsafeCell, fmt::Debug, ops::Deref};
 

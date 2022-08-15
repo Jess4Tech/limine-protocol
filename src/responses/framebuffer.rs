@@ -2,7 +2,7 @@ use crate::structures::framebuffer::Framebuffer;
 
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [FramebufferRequest]
+/// Response to [`FramebufferRequest`]
 pub struct FramebufferResponse {
     /// The response revision number
     pub revision: u64,
@@ -16,13 +16,14 @@ impl FramebufferResponse {
     /// Get the framebuffer slice
     /// # Safety
     /// The pointer must point to a valid array of [Framebuffer]s
+    #[must_use]
     pub unsafe fn get_framebuffers(&self) -> Option<&[&Framebuffer]> {
         if self.framebuffers.is_null() {
             return None;
         }
         Some(core::slice::from_raw_parts(
             self.framebuffers as *const &Framebuffer,
-            self.framebuffer_count as usize,
+            self.framebuffer_count.try_into().ok()?,
         ))
     }
 }

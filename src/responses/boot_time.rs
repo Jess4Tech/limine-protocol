@@ -1,6 +1,6 @@
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [BootTimeRequest]
+/// Response to [`BootTimeRequest`]
 pub struct BootTimeResponse {
     /// The response revision number
     pub revision: u64,

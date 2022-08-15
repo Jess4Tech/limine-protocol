@@ -2,7 +2,7 @@ use crate::structures::file::File;
 
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [ModuleRequest]
+/// Response to [`ModuleRequest`]
 pub struct ModuleResponse<'a> {
     /// The response revision number
     pub revision: u64,

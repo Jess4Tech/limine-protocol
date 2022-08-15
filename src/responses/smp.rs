@@ -2,7 +2,7 @@ use crate::structures::smpinfo::SMPInfo;
 
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [SMPRequest]
+/// Response to [`SMPRequest`]
 pub struct SMPResponse {
     /// The response revision number
     pub revision: u64,
@@ -21,15 +21,16 @@ impl SMPResponse {
     /// Get the CPU info slice
     ///
     /// # Safety
-    /// The pointer must point to a valid array of [SMPInfo]s
+    /// The pointer must point to a valid array of [`SMPInfo`]s
+    #[must_use]
     pub unsafe fn get_cpu_info(&self) -> Option<&[&SMPInfo]> {
         if self.cpus.is_null() {
             return None;
         }
 
         Some(core::slice::from_raw_parts(
-            self.cpus as *const &SMPInfo,
-            self.cpu_count as usize,
+            self.cpus.cast::<&SMPInfo>(),
+            self.cpu_count.try_into().ok()?,
         ))
     }
 }

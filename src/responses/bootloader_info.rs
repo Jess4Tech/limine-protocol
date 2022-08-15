@@ -2,7 +2,7 @@ use core::ffi::CStr;
 
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [InfoRequest]
+/// Response to [`InfoRequest`]
 pub struct BootloaderInfoResponse<'a> {
     /// The response revision number
     pub revision: u64,

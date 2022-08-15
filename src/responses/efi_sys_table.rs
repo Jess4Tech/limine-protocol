@@ -1,6 +1,6 @@
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [EfiSystemTableRequest]
+/// Response to [`EfiSystemTableRequest`]
 pub struct EfiSystemTableResponse {
     /// The response revision number
     pub revision: u64,

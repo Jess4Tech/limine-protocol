@@ -1,6 +1,6 @@
 #[repr(C)]
 #[derive(Debug)]
-/// Response to [KernelAddressRequest]
+/// Response to [`KernelAddressRequest`]
 pub struct KernelAddressResponse {
     /// The response revision number
     pub revision: u64,

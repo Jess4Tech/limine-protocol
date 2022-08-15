@@ -34,7 +34,8 @@ pub struct MemoryMapEntry {
 
 impl MemoryMapEntry {
     /// The ending address of the memory map entry
-    pub fn end(&self) -> u64 {
+    #[must_use]
+    pub const fn end(&self) -> u64 {
         self.base + self.length
     }
 }

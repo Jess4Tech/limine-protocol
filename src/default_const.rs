@@ -21,7 +21,7 @@ macro_rules! impl_number_constants {
     ($($ty:ty$(,)*)*) => {
         $(
         impl ConstDefault for $ty {
-            const DEFAULT: Self = <$ty>::MIN;
+            const DEFAULT: Self = Self::MIN;
         }
         )*
     };
