@@ -1,4 +1,21 @@
 //! Crate containing Rust representations for the Limine Boot Protocol
+//!
+//! # Example
+//! If one wanted to have 64KiB of stack space, they would make a request like such
+//! ```rust
+//! static STACK_REQUEST: Request<StackSizeRequest> = StackSizeRequest {
+//!    stack_size: 1024 * 64,
+//!    ..StackSizeRequest::default()
+//! }
+//! .into();
+//! ```
+//!
+//! One could also decide to link the request into the `limine_reqs` section, which would be done like such
+//! ```rust
+//! #[no_mangle]
+//! #[link_section = ".limine_reqs"]
+//! static REQS: [*mut (); 1] = [&STACK_REQUEST as *mut ()];
+//! ```
 #![no_std]
 #![deny(missing_docs)]
 #![warn(
