@@ -48,7 +48,7 @@ pub struct Request<T>(UnsafeCell<T>);
 impl<T> Request<T> {
     /// Create a new request.
     /// This should not be used outside of the `limine-protocol` crate.
-    pub const fn new(req: T) -> Self {
+    pub(crate) const fn new(req: T) -> Self {
         Self(UnsafeCell::new(req))
     }
 }

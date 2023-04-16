@@ -7,6 +7,10 @@ Tests are intended to ensure that there is no UB in the implementations themselv
 See the `example` directory for a simple example
 
 # Changelog
+* 0.4.2
+    * Fix visibility issue
+* 0.4.1
+    * Add more documentation and an example
 * 0.4.0
     * Add `get_response` to everything to reduce boilerplate
     * Make the `UnsafeCell` in `Request<T>` not public
