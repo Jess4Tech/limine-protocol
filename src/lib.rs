@@ -12,10 +12,21 @@
 //!
 //! One could also decide to link the request into the `limine_reqs` section, which would be done like such
 //! ```rust
-//! #[no_mangle]
-//! #[link_section = ".limine_reqs"]
-//! static REQS: [*mut (); 1] = [&STACK_REQUEST as *mut ()];
+//! pub struct NotSync<T>(pub T);
+//!
+//! impl<T> core::ops::Deref for NotSync<T> {
+//!     type Target = T;
+//!  
+//!     fn deref(&self) -> &Self::Target {
+//!         &self.0
+//!     }
+//! }
+//!
+//! unsafe impl<T> Sync for NotSync<T> {}
+//!
+//! static ARR: [NotSync<*mut ()>; 1] = [NotSync(&STACK_REQUEST as *const _ as *mut ())];
 //! ```
+//! Note that this is very unsafe, as is expected by such a thing as a Bootloader. Rust has no clue we're doing this at all.
 #![no_std]
 #![deny(missing_docs)]
 #![warn(
