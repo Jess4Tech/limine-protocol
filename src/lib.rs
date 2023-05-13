@@ -3,6 +3,8 @@
 //! # Example
 //! If one wanted to have 64KiB of stack space, they would make a request like such
 //! ```rust
+//! // Note that `#[used]` may be required in case Rust decides the object is unreachable or unused
+//! #[used]
 //! static STACK_REQUEST: Request<StackSizeRequest> = StackSizeRequest {
 //!    stack_size: 1024 * 64,
 //!    ..StackSizeRequest::default()
@@ -24,6 +26,8 @@
 //!
 //! unsafe impl<T> Sync for NotSync<T> {}
 //!
+//! // Note that `#[used]` may be required in case Rust decides the object is unreachable or unused
+//! #[used]
 //! static ARR: [NotSync<*mut ()>; 1] = [NotSync(&STACK_REQUEST as *const _ as *mut ())];
 //! ```
 //! Note that this is very unsafe, as is expected by such a thing as a Bootloader. Rust has no clue we're doing this at all.

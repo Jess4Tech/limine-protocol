@@ -7,6 +7,8 @@ Tests are intended to ensure that there is no UB in the implementations themselv
 See the `example` directory for a simple example
 
 # Changelog
+* 0.4.3
+    * Document possible need of `#[used]`
 * 0.4.2
     * Fix visibility issue
 * 0.4.1
