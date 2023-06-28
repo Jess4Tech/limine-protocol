@@ -6,7 +6,7 @@ limine_request! {
     #[repr(C)]
     #[derive(Debug)]
     /// Request a framebuffer
-    pub struct FramebufferRequest: [0xcbfe_81d7_dd2d_1977, 0x0631_5031_9ebc_9b71] {
+    pub struct FramebufferRequest: [0x9d58_27dc_d881_dd75, 0xa314_8604_f6fa_b11b] {
         /// Response pointer
         pub response: Option<NonNull<FramebufferResponse>>,
     }
